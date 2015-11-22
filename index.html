@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="contactsApp">
-<div class="container">
+  <div class="container">
 
     <h1>Pure Angular Contacts List</h1>
     <p><em>by <a href="https://babelthuap.github.io/">Nicholas Neumann-Chun</a></em></p>
@@ -23,30 +23,69 @@
     <hr>
   
     <div ng-controller="listCtrl">
-      <label for="input">Name:</label>
-      <input ng-model="contact.name" type="text">
-      <label for="input">Email:</label>
-      <input ng-model="contact.email" type="text">
+      <p>
+        <label for="input">Name:</label>
+        <input ng-model="contact.name" type="text">
+        <label for="input">Email:</label>
+        <input ng-model="contact.email" type="text">
+      </p>
       <button ng-click="add()" class="btn btn-primary">Add Contact</button>
+
+      <hr>
 
       <table class="table table-striped" ng-show="contacts.length > 0">
         <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="c in contacts track by $index">
             <td>{{c.name}}</td>
             <td>{{c.email}}</td>
+            <td>
+              <button class="btn btn-default" ng-click="delete($index)">Delete</button>
+              <button class="btn btn-default" ng-click="edit($index)">Edit</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-
-</div> <!-- /container -->
-<script src="app.js"></script>
+  </div> <!-- /container -->
+  <script src="app.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
