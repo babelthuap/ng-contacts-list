@@ -28,30 +28,41 @@
         <input ng-model="contact.name" type="text">
         <label for="input">Email:</label>
         <input ng-model="contact.email" type="text">
+        <label for="input">Phone:</label>
+        <input ng-model="contact.phone" type="text">
+        <label for="input">Twitter:</label>
+        <input ng-model="contact.twitter" type="text">
       </p>
       <button ng-click="add()" class="btn btn-primary">Add Contact</button>
 
-      <hr>
-
-      <table class="table table-striped" ng-show="contacts.length > 0">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="c in contacts track by $index">
-            <td>{{c.name}}</td>
-            <td>{{c.email}}</td>
-            <td>
-              <button class="btn btn-default" ng-click="delete($index)">Delete</button>
-              <button class="btn btn-default" ng-click="edit($index)">Edit</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="list" ng-show="contacts.length > 0">
+        <hr>
+        <label for="input">Filter:</label>
+        <input ng-model="filter" type="text">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Twitter</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="c in contacts track by $index">
+              <td>{{c.name}}</td>
+              <td>{{c.email}}</td>
+              <td>{{c.phone}}</td>
+              <td>{{c.twitter}}</td>
+              <td>
+                <button class="btn btn-default" ng-click="delete($index)">Delete</button>
+                <button class="btn btn-default" ng-click="edit($index)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div> <!-- /container -->

@@ -4,16 +4,18 @@ var app = angular.module('contactsApp', [])
 
 app.controller('listCtrl', function($scope) {
   // seeded for testing purposes
-  $scope.contacts = [{name: 'Nicholas', email: 'nicholas@gmail.com'},
-                     {name: 'Ben', email: 'dragon@gmail.com'},
-                     {name: 'Joan', email: 'neumann@gmail.com'},
-                     {name: 'Kaspar', email: 'chun@gmail.com'}];
+  $scope.contacts = [{name: 'Nicholas', email: 'nicholas@gmail.com', phone: '111-111-1111', twitter: '@Babelthuap'},
+                     {name: 'Ben', email: 'dragon@gmail.com', phone: '555-555-5555', twitter: '@dragon'},
+                     {name: 'Joan', email: 'neuman@gmail.com', phone: '777-777-7777', twitter: '@neuman'},
+                     {name: 'Kaspar', email: 'chun@gmail.com', phone: '123-456-7890', twitter: '@chun'}];
 
   $scope.add = function() {
     var newContact = $scope.contact;
     $scope.contacts.push({
-      name: newContact.name, 
-      email: newContact.email
+      name: newContact.name,
+      email: newContact.email,
+      phone: newContact.phone,
+      twitter: newContact.twitter
     });
     return;
   }
