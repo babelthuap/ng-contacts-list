@@ -22,7 +22,7 @@
   
     <hr>
   
-    <div ng-controller="listCtrl">
+    <div ng-controller="listCtrl" ng-cloak>
       <p>
         <label for="input">Name:</label>
         <input ng-model="contact.name" type="text">
@@ -33,7 +33,7 @@
         <label for="input">Twitter:</label>
         <input ng-model="contact.twitter" type="text">
       </p>
-      <button ng-click="add()" class="btn btn-primary">Add Contact</button>
+      <button ng-click="add(contact)" class="btn btn-primary">Add Contact</button>
 
       <div id="list" ng-show="contacts.length > 0">
         <hr>
