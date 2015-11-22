@@ -1,0 +1,22 @@
+{
+  "name": "ng-contacts-list",
+  "authors": [
+    "Nicholas Neumann-Chun <nicholas.babelthuap (at) gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://babelthuap.github.io/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.5"
+  }
+}
