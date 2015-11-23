@@ -17,44 +17,45 @@
 <body ng-app="contactsApp">
   <div class="container">
 
-    <h1>Pure Angular Contacts List</h1>
-    <p><em>by <a href="https://babelthuap.github.io/">Nicholas Neumann-Chun</a></em></p>
-  
+    <div class="header">
+      <h1>Pure Angular Contacts List</h1>
+      <p><em>by <a href="https://babelthuap.github.io/">Nicholas Neumann-Chun</a></em></p>
+    </div>
+
     <hr>
   
-    <div ng-controller="listCtrl" ng-cloak>
-      <p>
-        <label for="input">Name:</label>
-        <input ng-model="contact.name" type="text">
-        <label for="input">Email:</label>
-        <input ng-model="contact.email" type="text">
-        <label for="input">Phone:</label>
-        <input ng-model="contact.phone" type="text">
-        <label for="input">Twitter:</label>
-        <input ng-model="contact.twitter" type="text">
-      </p>
-      <button ng-click="add(contact)" class="btn btn-primary">Add Contact</button>
+    <div ng-controller="listCtrl">
+      <div class="input-form" ng-cloak>
+        <p>
+          <!-- I'd like to loop through the 'fields' array to create this section, but I can't figure that out -->
+          <label for="input">Name:</label>
+          <input ng-model="contact.name" type="text">
+          <label for="input">Email:</label>
+          <input ng-model="contact.email" type="text">
+          <label for="input">Phone:</label>
+          <input ng-model="contact.phone" type="text">
+          <label for="input">Twitter:</label>
+          <input ng-model="contact.twitter" type="text">
+        </p>
+        <button ng-click="add(contact)" class="btn btn-primary">Add Contact</button>
+      </div>
 
-      <div id="list" ng-show="contacts.length > 0">
+      <div id="list" ng-show="contacts.length > 0" ng-cloak>
         <hr>
-        <label for="input">Filter:</label>
-        <input ng-model="filter" type="text">
+        <span class="filter">
+          <label for="input">Filter:</label>
+          <input ng-model="filter" type="text">
+        </span>
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Twitter</th>
+              <th ng-repeat="f in Fields">{{f}}</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="c in contacts track by $index">
-              <td>{{c.name}}</td>
-              <td>{{c.email}}</td>
-              <td>{{c.phone}}</td>
-              <td>{{c.twitter}}</td>
+            <tr ng-repeat="c in getContacts(filter) track by $index">
+              <td ng-repeat="f in fields">{{c[f]}}</td>
               <td>
                 <button class="btn btn-default" ng-click="delete($index)">Delete</button>
                 <button class="btn btn-default" ng-click="edit($index)">Edit</button>

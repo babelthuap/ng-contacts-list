@@ -1,0 +1,9 @@
+.header, .input-form {
+  text-align: center;
+}
+
+.filter {
+  border: 1px solid #337ab7;
+  border-radius: 8px;
+  padding: 8px;
+}
