@@ -42,9 +42,9 @@
 
       <div id="list" ng-show="contacts.length > 0" ng-cloak>
         <hr>
-        <span class="filter">
+        <span class="query">
           <label for="input">Filter:</label>
-          <input ng-model="filter" type="text">
+          <input ng-model="query" type="text">
         </span>
         <table class="table table-striped">
           <thead>
@@ -54,7 +54,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="c in getContacts(filter) track by $index">
+            <tr ng-repeat="c in getContacts(query) track by $index">
               <td ng-repeat="f in fields">{{c[f]}}</td>
               <td>
                 <button class="btn btn-default" ng-click="delete($index)">Delete</button>

@@ -12,6 +12,7 @@ app.controller('listCtrl', function($scope, listCRUD) {
   $scope.add = contact => {
     listCRUD.add(contact);
     $scope.fields.forEach(field => $scope.contact[field] = '');
+    return;
   }
 });
 
@@ -40,10 +41,12 @@ app.service('listCRUD', function() {
     return;
   }
 
-  this.getContacts = function(filter) {
-    if (!filter) return this.contacts;
-
-    return this.contacts;
+  this.getContacts = function(query) {
+    if (!query) return this.contacts;
+    // HolyCrapThisIsConcise!
+    return this.contacts.filter(contact => {
+      return this.fields.some(field => contact[field].indexOf(query) !== -1);
+    })
   }
 
 });
