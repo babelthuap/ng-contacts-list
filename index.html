@@ -12,7 +12,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="contactsApp">
@@ -47,14 +46,10 @@
           <label for="input">Filter:</label>
           <input ng-model="query" type="text">
         </span>
-        <br><br>
         <table class="table table-striped">
           <thead>
             <tr>
-              <th ng-repeat="f in Fields" ng-click="sortBy(f)">
-                {{f}}
-                <i class="fa fa-caret-up" ng-show="isSortColumn(f)"></i>
-              </th>
+              <th ng-repeat="f in Fields">{{f}}</th>
               <th></th>
             </tr>
           </thead>
