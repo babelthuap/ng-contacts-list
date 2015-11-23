@@ -6,10 +6,13 @@ app.controller('listCtrl', function($scope, listCRUD) {
   $scope.fields = listCRUD.fields;
   $scope.Fields = listCRUD.fields.map(word => word[0].toUpperCase() + word.slice(1));
   $scope.contacts = listCRUD.contacts;
-  $scope.add = listCRUD.add;
   $scope.delete = listCRUD.delete;
   $scope.edit = listCRUD.edit;
   $scope.getContacts = listCRUD.getContacts;
+  $scope.add = contact => {
+    listCRUD.add(contact);
+    $scope.fields.forEach(field => $scope.contact[field] = '');
+  }
 });
 
 app.service('listCRUD', function() {
