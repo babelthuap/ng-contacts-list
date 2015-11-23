@@ -3,12 +3,17 @@
 var app = angular.module('contactsApp', [])
 
 app.controller('listCtrl', function($scope, listCRUD) {
+  $scope.contact = {};
   $scope.fields = listCRUD.fields;
   $scope.Fields = listCRUD.fields.map(word => word[0].toUpperCase() + word.slice(1));
   $scope.contacts = listCRUD.contacts;
-  $scope.delete = listCRUD.delete;
   $scope.edit = listCRUD.edit;
   $scope.getContacts = listCRUD.getContacts;
+  $scope.delete = index => {
+    var deleted = listCRUD.delete(index)[0];
+    $scope.fields.forEach(field => $scope.contact[field] = deleted[field]);
+    return;
+  }
   $scope.add = contact => {
     listCRUD.add(contact);
     $scope.fields.forEach(field => $scope.contact[field] = '');
