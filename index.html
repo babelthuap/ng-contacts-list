@@ -9,6 +9,7 @@
   <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
 
   <!-- IF USING CDN: -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
@@ -62,16 +63,57 @@
             <tr ng-repeat="c in getContacts(query) track by $index">
               <td ng-repeat="f in fields">{{c[f]}}</td>
               <td>
-                <button class="btn btn-default" ng-click="delete($index)">Delete</button>
-                <button class="btn btn-default" ng-click="edit($index)">Edit</button>
+                <button class="btn btn-default" ng-click="openEdit($index, c)" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-default" ng-click="delete($index)"><i class="fa fa-trash"></i></button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+  
+      <!-- Modal -->
+      <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Editing {{beingEdited.name}}...</h4>
+            </div>
+            <div class="modal-body">
+              <p>
+                <!-- Good golly, this is WET -->
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Name:&nbsp;&nbsp;</td>
+                      <td><input ng-model="beingEdited.name" type="text" size="36"><br></td>
+                    </tr>
+                    <tr>
+                      <td>Email:&nbsp;&nbsp;</td>
+                      <td><input ng-model="beingEdited.email" type="text" size="36"><br></td>
+                    </tr>
+                    <tr>
+                      <td>Phone:&nbsp;&nbsp;</td>
+                      <td><input ng-model="beingEdited.phone" type="text" size="36"><br></td>
+                    </tr>
+                    <tr>
+                      <td>Twitter:&nbsp;&nbsp;</td>
+                      <td><input ng-model="beingEdited.twitter" type="text" size="36"><br></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" ng-click="commitEdit()" data-dismiss="modal">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div> <!-- /container -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
   <script src="app.js"></script>
 </body>
 </html>

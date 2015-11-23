@@ -7,7 +7,9 @@ app.controller('listCtrl', function($scope, listCRUD) {
   $scope.fields = listCRUD.fields;
   $scope.Fields = listCRUD.fields.map(word => word[0].toUpperCase() + word.slice(1));
   $scope.contacts = listCRUD.contacts;
-  $scope.edit = listCRUD.edit;
+  $scope.openEdit = listCRUD.openEdit;
+  $scope.beingEdited = listCRUD.beingEdited;
+  $scope.commitEdit = listCRUD.commitEdit;
   $scope.getContacts = listCRUD.getContacts;
   $scope.sortBy = listCRUD.sortBy;
   $scope.isSortColumn = listCRUD.isSortColumn;
@@ -27,6 +29,8 @@ app.controller('listCtrl', function($scope, listCRUD) {
 
 app.service('listCRUD', function() {
   this.fields = ['name', 'email', 'phone', 'twitter'];
+  this.beingEdited = {};
+  var editInd;
   var sortColumn = 'name';
 
   // seeded for testing purposes
@@ -46,8 +50,14 @@ app.service('listCRUD', function() {
     return this.contacts.splice(index, 1);
   }
 
-  this.edit = function(index) {
-    console.log('editing', index)
+  this.openEdit = function(index, contact) {
+    editInd = index;
+    this.fields.forEach(field => this.beingEdited[field] = contact[field]);
+    return;
+  }
+
+  this.commitEdit = function() {
+    this.fields.forEach(field => this.contacts[editInd][field] = this.beingEdited[field]);
     return;
   }
 
@@ -56,7 +66,7 @@ app.service('listCRUD', function() {
     return;
   }
 
-  this.isSortColumn = field => {
+  this.isSortColumn = function(field) {
     return field.toLowerCase() === sortColumn;
   }
 
